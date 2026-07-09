@@ -1,61 +1,45 @@
-# 🤖 AI Resume Analyzer Pro
+# 🤖 AI Resume Analyzer
 
-An AI-powered Resume Analyzer that evaluates resumes using ATS scoring, Job Description matching, and Google Gemini AI.
+An AI-powered Resume Analyzer that evaluates resumes, provides ATS-style feedback, identifies missing skills, and suggests improvements to help candidates optimize their resumes for better job opportunities.
 
 ---
 
 ## 🚀 Features
 
-- 📄 Resume PDF Upload
-- 📑 Job Description PDF Upload
-- 🤖 Gemini AI Resume Review
-- 🎯 Resume vs Job Description Analysis
-- 📊 ATS Resume Score
-- 📈 Resume Skills Visualization
-- 💼 Recommended Job Roles
-- 💡 AI Resume Suggestions
-- 🎤 AI Interview Questions
-- 📥 Download PDF Report
+- 📄 Upload Resume (PDF)
+- 🤖 AI-powered Resume Analysis
+- 📊 ATS-style Resume Score
+- 💡 Skill Gap Analysis
+- 📝 Resume Improvement Suggestions
+- 🔍 Keyword Matching
+- ⚡ Fast & User-Friendly Interface
 
 ---
 
-## 🛠 Tech Stack
+## 🛠️ Tech Stack
 
 - Python
 - Streamlit
 - Google Gemini AI
-- LangChain
-- Plotly
-- ReportLab
-- PyPDF2
+- PDFPlumber
 - Pandas
 
 ---
 
 ## 📂 Project Structure
 
-```text
-AI-Job-Agent/
+```
+AI-Resume-Analyzer/
 │
-├── modules/
-│   ├── ai_resume_review.py
-│   ├── ats_gauge.py
-│   ├── interview_questions.py
-│   ├── job_description_parser.py
-│   ├── match_score.py
-│   ├── recommend_roles.py
-│   ├── report_generator.py
-│   ├── resume_parser.py
-│   ├── resume_score.py
-│   ├── resume_suggestions.py
-│   ├── resume_vs_jd.py
-│   ├── skill_extractor.py
-│   └── skills_chart.py
-│
+├── Data/
 ├── Resume/
+├── auth/
+├── modules/
+├── user_data/
 ├── app.py
+├── main.py
+├── config.py
 ├── requirements.txt
-├── .env
 └── README.md
 ```
 
@@ -64,9 +48,9 @@ AI-Job-Agent/
 ## ⚙️ Installation
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/pahadibanda/AI-Resume-Analyzer.git
 
-cd AI-Job-Agent
+cd AI-Resume-Analyzer
 
 pip install -r requirements.txt
 
@@ -75,40 +59,24 @@ streamlit run app.py
 
 ---
 
-## 📊 Application Features
+## 📸 Demo
 
-✔ ATS Resume Score
+Upload your resume and receive:
 
-✔ Resume vs Job Description Matching
-
-✔ AI Resume Review
-
-✔ AI Suggestions
-
-✔ Skills Chart
-
-✔ Recommended Roles
-
-✔ AI Interview Questions
-
-✔ PDF Report Download
+- ATS Score
+- Resume Feedback
+- Missing Skills
+- Improvement Suggestions
 
 ---
 
-## 📸 Screenshots
+## 🎯 Future Improvements
 
-_Add screenshots after deploying the project._
-
----
-
-## 🚀 Future Enhancements
-
-- AI Cover Letter Generator
-- Resume History
+- Resume Ranking
+- Job Recommendation
+- Cover Letter Generator
+- Multi-language Support
 - Resume Comparison
-- Multi-Language Support
-- Job Recommendation Engine
-- AI Career Roadmap
 
 ---
 
@@ -116,10 +84,9 @@ _Add screenshots after deploying the project._
 
 **Rajat Rangra**
 
-Data Analyst | Python | SQL | Power BI | Machine Learning | Generative AI
+- GitHub: https://github.com/pahadibanda
+- LinkedIn: *(Add your LinkedIn Profile Here)*
 
 ---
 
-## ⭐ If you like this project
-
-Give it a ⭐ on GitHub.
+⭐ If you found this project useful, don't forget to star the repository.
