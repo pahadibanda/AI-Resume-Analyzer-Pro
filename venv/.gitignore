@@ -1,23 +1,15 @@
-# Python
-__pycache__/
-*.pyc
-
-# Environment
-.env
-
 # Virtual Environment
 venv/
-.venv/
 
-# Streamlit
-.streamlit/
+# Environment variables
+.env
+
+# Python cache
+__pycache__/
+*.pyc
 
 # VS Code
 .vscode/
 
-# OS Files
-.DS_Store
-Thumbs.db
-
-# PDF Reports
+# Generated reports
 resume_report.pdf

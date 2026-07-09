@@ -1,0 +1,9 @@
+streamlit
+pandas
+plotly
+PyPDF2
+python-dotenv
+langchain
+langchain-google-genai
+google-generativeai
+reportlab
