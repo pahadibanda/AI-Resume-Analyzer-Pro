@@ -1,18 +1,27 @@
-# 🤖 AI Resume Analyzer
+# 🤖 AI Resume Analyzer Pro
 
-An AI-powered Resume Analyzer that evaluates resumes, provides ATS-style feedback, identifies missing skills, and suggests improvements to help candidates optimize their resumes for better job opportunities.
+An AI-powered Resume Analyzer that helps job seekers optimize their resumes using AI. It analyzes resumes, compares them with job descriptions, calculates ATS compatibility, identifies missing skills, generates interview questions, and provides actionable improvement suggestions.
 
 ---
 
-## 🚀 Features
+## 🚀 Live Demo
+
+🔗 https://YOUR-STREAMLIT-LINK.streamlit.app
+
+---
+
+## ✨ Features
 
 - 📄 Upload Resume (PDF)
-- 🤖 AI-powered Resume Analysis
-- 📊 ATS-style Resume Score
-- 💡 Skill Gap Analysis
-- 📝 Resume Improvement Suggestions
-- 🔍 Keyword Matching
-- ⚡ Fast & User-Friendly Interface
+- 📑 Upload Job Description (PDF/Text)
+- 📊 ATS Resume Score
+- 🎯 Resume vs Job Description Match
+- 🤖 AI Resume Review
+- 💡 Resume Improvement Suggestions
+- 🧠 Missing Skills Detection
+- 💼 Recommended Job Roles
+- 🎤 AI-Generated Interview Questions
+- ⚡ Fast & Responsive Streamlit Interface
 
 ---
 
@@ -20,24 +29,29 @@ An AI-powered Resume Analyzer that evaluates resumes, provides ATS-style feedbac
 
 - Python
 - Streamlit
-- Google Gemini AI
+- Groq API (Llama 3.3 70B Versatile)
+- LangChain
 - PDFPlumber
 - Pandas
+- Python-dotenv
 
 ---
 
 ## 📂 Project Structure
 
-```
+```text
 AI-Resume-Analyzer/
 │
 ├── Data/
 ├── Resume/
 ├── auth/
 ├── modules/
+│   ├── ai_resume_review.py
+│   ├── resume_vs_jd.py
+│   ├── interview_questions.py
+│   └── ...
 ├── user_data/
 ├── app.py
-├── main.py
 ├── config.py
 ├── requirements.txt
 └── README.md
@@ -59,24 +73,49 @@ streamlit run app.py
 
 ---
 
-## 📸 Demo
+## 🔑 Environment Variables
 
-Upload your resume and receive:
+Create a `.env` file:
 
-- ATS Score
-- Resume Feedback
-- Missing Skills
-- Improvement Suggestions
+```env
+GROQ_API_KEY=your_groq_api_key
+```
+
+For Streamlit Cloud:
+
+```toml
+GROQ_API_KEY="your_groq_api_key"
+```
+
+---
+
+## 📸 What This Project Provides
+
+✅ ATS Resume Score
+
+✅ AI Resume Review
+
+✅ Resume vs Job Description Analysis
+
+✅ Missing Skills Detection
+
+✅ Resume Improvement Suggestions
+
+✅ Recommended Job Roles
+
+✅ AI Interview Questions
 
 ---
 
 ## 🎯 Future Improvements
 
+- Resume PDF Report Download
+- AI Cover Letter Generator
 - Resume Ranking
-- Job Recommendation
-- Cover Letter Generator
+- Skill Gap Dashboard
+- Salary Prediction
+- Resume Chat Assistant
 - Multi-language Support
-- Resume Comparison
 
 ---
 
@@ -85,8 +124,10 @@ Upload your resume and receive:
 **Rajat Rangra**
 
 - GitHub: https://github.com/pahadibanda
-- LinkedIn: *(Add your LinkedIn Profile Here)*
+- LinkedIn: https://www.linkedin.com/in/YOUR-LINKEDIN
 
 ---
 
-⭐ If you found this project useful, don't forget to star the repository.
+## ⭐ Support
+
+If you found this project useful, please consider giving it a ⭐ on GitHub.
