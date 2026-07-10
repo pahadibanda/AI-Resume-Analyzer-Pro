@@ -6,7 +6,7 @@ An AI-powered Resume Analyzer that helps job seekers optimize their resumes usin
 
 ## 🚀 Live Demo
 
-🔗 https://YOUR-STREAMLIT-LINK.streamlit.app
+🔗 https://pahadibanda-ai-resume-analyzer.streamlit.app
 
 ---
 
