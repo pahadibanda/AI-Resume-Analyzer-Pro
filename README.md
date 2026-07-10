@@ -124,7 +124,7 @@ GROQ_API_KEY="your_groq_api_key"
 **Rajat Rangra**
 
 - GitHub: https://github.com/pahadibanda
-- LinkedIn: https://www.linkedin.com/in/rajat-rangra/
+- LinkedIn: https://www.linkedin.com/in/rajat-rangra-68849b248/
 
 ---
 
