@@ -1,19 +1,16 @@
 import os
 
 from dotenv import load_dotenv
-from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_groq import ChatGroq
 from langchain_core.messages import HumanMessage
 
 load_dotenv()
 
-api_key = os.getenv("GOOGLE_API_KEY")
-
-llm = ChatGoogleGenerativeAI(
-   model="gemini-2.0-flash",
-    google_api_key=api_key,
+llm = ChatGroq(
+    model="llama-3.3-70b-versatile",
+    groq_api_key=os.getenv("GROQ_API_KEY"),
     temperature=0.3
 )
-
 def review_resume(resume_text):
 
     prompt = f"""
