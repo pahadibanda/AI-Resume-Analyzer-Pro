@@ -1,5 +1,9 @@
 import streamlit as st
 
+from components.navbar import render_navbar
+from components.hero import render_hero
+from components.metric_card import render_metric_cards
+
 from modules.resume_parser import extract_text
 from modules.job_description_parser import extract_job_description
 from modules.skill_extractor import extract_skills
@@ -20,28 +24,67 @@ st.set_page_config(
     page_icon="🤖",
     layout="wide"
 )
-
-st.title("🤖 AI Resume Analyzer Pro")
-
+selected = render_navbar()
+render_hero()
+render_metric_cards()
 st.markdown("""
-Upload your **Resume** and **Job Description** to get:
+<style>
 
-- 📊 ATS Score
-- 🎯 Resume Match Score
-- 🤖 Gemini AI Review
-- 📄 Resume vs JD Analysis
-- 💼 Recommended Roles
-- 💡 AI Suggestions
-- 🎤 Interview Questions
-""")
+.metric-card{
+background:#1f2937;
+padding:25px;
+border-radius:18px;
+border:1px solid rgba(255,255,255,.08);
+box-shadow:0 8px 30px rgba(0,0,0,.35);
+transition:.3s;
+text-align:center;
+margin-bottom:20px;
+}
 
+.metric-card:hover{
+transform:translateY(-6px);
+border:1px solid #7C3AED;
+box-shadow:0 12px 40px rgba(124,58,237,.35);
+}
+
+.metric-title{
+color:#9CA3AF;
+font-size:16px;
+}
+
+.metric-value{
+font-size:42px;
+font-weight:bold;
+color:white;
+margin-top:10px;
+}
+
+.metric-sub{
+color:#22C55E;
+margin-top:10px;
+font-size:15px;
+}
+
+</style>
+""", unsafe_allow_html=True)
 # ---------------- FILE UPLOAD ---------------- #
-
-uploaded_file = st.file_uploader(
+left_col, right_col = st.columns([1,1])
+with left_col:
+    uploaded_file = st.file_uploader(
     "📄 Upload Resume",
     type=["pdf"]
 )
+with right_col:
 
+    st.markdown("### 📈 Analysis Summary")
+
+    st.info("📄 Resume Uploaded")
+
+    st.success("🤖 AI Ready")
+
+    st.metric("🎯 ATS Score", "87%")
+
+    st.metric("💼 JD Match", "82%")
 job_file = st.file_uploader(
     "📑 Upload Job Description",
     type=["pdf"]
@@ -66,6 +109,7 @@ if uploaded_file is not None and job_file is not None:
     job_text = extract_job_description(
         "Resume/job_description.pdf"
     )
+
 
     with st.spinner("🤖 Gemini AI is analyzing your resume..."):
         ai_review = review_resume(
