@@ -1,30 +1,32 @@
 """Shared LLM client singleton.
 
 All AI modules import `llm` from here to avoid creating multiple
-ChatGoogleGenerativeAI instances at module load time.
+ChatGroq instances at module load time.
 
 Configuration:
-    - model:      gemini-1.5-flash (high speed, premium quality)
-    - temperature: 0.2
+    - model:      llama-3.3-70b-versatile (best quality/speed ratio on Groq)
+    - temperature: 0.2 (lower → more consistent, structured outputs)
+    - max_tokens: 4096 (cap to avoid runaway responses)
+    - timeout:    45s  (prevent hanging on slow network)
 """
 import os
 from dotenv import load_dotenv
-from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_groq import ChatGroq
 
 load_dotenv()
 
-# Accept both GEMINI_API_KEY and GOOGLE_API_KEY for seamless setup
-_api_key = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
+_api_key = os.getenv("GROQ_API_KEY")
 if not _api_key:
     raise EnvironmentError(
-        "GEMINI_API_KEY or GOOGLE_API_KEY is not set. "
-        "Add it to your .env file: GEMINI_API_KEY=AIzaSy..."
+        "GROQ_API_KEY is not set. "
+        "Add it to your .env file: GROQ_API_KEY=gsk_..."
     )
 
-llm = ChatGoogleGenerativeAI(
-    model="gemini-1.5-flash",
-    google_api_key=_api_key,
+llm = ChatGroq(
+    model="llama-3.3-70b-versatile",
+    groq_api_key=_api_key,
     temperature=0.2,
+    max_tokens=4096,
     timeout=45,
 )
 
