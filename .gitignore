@@ -1,0 +1,18 @@
+# Virtual Environment
+venv/
+
+# Environment variables
+.env
+
+# Python cache
+__pycache__/
+*.pyc
+
+# VS Code
+.vscode/
+
+# Generated reports
+resume_report.pdf
+
+# Browser cache and temp files
+user_data/
