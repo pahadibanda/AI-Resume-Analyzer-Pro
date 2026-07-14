@@ -164,7 +164,7 @@ def render_hero() -> bool:
 """, unsafe_allow_html=True)
 
     with right:
-        video_src = "static/robot_walk.mp4"
+        video_src = "https://cdn.jsdelivr.net/gh/pahadibanda/AI-Resume-Analyzer-Pro/static/robot_walk.mp4"
 
         robot_html = f"""
 <style>
