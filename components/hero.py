@@ -164,7 +164,7 @@ def render_hero() -> bool:
 """, unsafe_allow_html=True)
 
     with right:
-        video_src = "/app/static/robot_walk.mp4"
+        video_src = "static/robot_walk.mp4"
 
         robot_html = f"""
 <style>

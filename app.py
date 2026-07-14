@@ -276,6 +276,102 @@ st.markdown("""
 <div class="nebula-glow-2"></div>
 """, unsafe_allow_html=True)
 
+# tsParticles Galaxy Background injected dynamically into parent window DOM
+st.components.v1.html("""
+<script>
+    const parentDoc = window.parent.document;
+    
+    // Check if particles container is already added to avoid duplicate injections
+    if (!parentDoc.getElementById("tsparticles-bg")) {
+        // 1. Create the particle background container
+        const particlesBg = parentDoc.createElement("div");
+        particlesBg.id = "tsparticles-bg";
+        particlesBg.style.position = "fixed";
+        particlesBg.style.top = "0";
+        particlesBg.style.left = "0";
+        particlesBg.style.width = "100vw";
+        particlesBg.style.height = "100vh";
+        particlesBg.style.zIndex = "-1";
+        particlesBg.style.pointerEvents = "none";
+        particlesBg.style.overflow = "hidden";
+        particlesBg.style.background = "#05010f";
+
+        // Add nebula blobs
+        const blob1 = parentDoc.createElement("div");
+        blob1.className = "nebula-blob nebula-1";
+        const blob2 = parentDoc.createElement("div");
+        blob2.className = "nebula-blob nebula-2";
+        
+        // Add canvas wrapper
+        const canvasWrapper = parentDoc.createElement("div");
+        canvasWrapper.id = "tsparticles-canvas-wrapper";
+        canvasWrapper.style.position = "absolute";
+        canvasWrapper.style.top = "0";
+        canvasWrapper.style.left = "0";
+        canvasWrapper.style.width = "100%";
+        canvasWrapper.style.height = "100%";
+
+        // Add noise overlay
+        const noise = parentDoc.createElement("div");
+        noise.className = "noise-overlay";
+
+        particlesBg.appendChild(blob1);
+        particlesBg.appendChild(blob2);
+        particlesBg.appendChild(canvasWrapper);
+        particlesBg.appendChild(noise);
+        
+        // Prepend container to parent body
+        parentDoc.body.prepend(particlesBg);
+
+        // 2. Load tsParticles CDN script
+        const script = parentDoc.createElement("script");
+        script.src = "https://cdnjs.cloudflare.com/ajax/libs/tsparticles/2.12.0/tsparticles.bundle.min.js";
+        script.onload = function() {
+            parentDoc.defaultView.tsParticles.load("tsparticles-canvas-wrapper", {
+                fpsLimit: 60,
+                particles: {
+                    number: {
+                        value: parentDoc.defaultView.innerWidth < 768 ? 150 : 350,
+                        density: { enable: true, area: 800 }
+                    },
+                    color: { value: "#ffffff" },
+                    shape: { type: "circle" },
+                    opacity: {
+                        value: { min: 0.15, max: 0.85 },
+                        animation: { enable: true, speed: 0.8, sync: false }
+                    },
+                    size: { value: { min: 1, max: 3.5 } },
+                    move: {
+                        enable: true,
+                        speed: 0.45,
+                        direction: "none",
+                        random: true,
+                        straight: false,
+                        outModes: { default: "out" }
+                    },
+                    twinkle: {
+                        particles: { enable: true, color: "#c084fc", frequency: 0.04, opacity: 1 }
+                    }
+                },
+                interactivity: {
+                    detectsOn: "window",
+                    events: {
+                        onHover: { enable: true, mode: "grab" },
+                        onClick: { enable: true, mode: "push" },
+                        resize: true
+                    },
+                    modes: {
+                        grab: { distance: 180, links: { opacity: 0.35 } },
+                        push: { quantity: 4 }
+                    }
+                }
+            });
+        };
+        parentDoc.head.appendChild(script);
+    }
+</script>
+""", height=0)
+
 # ══════════════════════════════════════════════════════════════════════════════
 # LANDING PAGE + UPLOAD FLOW
 # ══════════════════════════════════════════════════════════════════════════════
