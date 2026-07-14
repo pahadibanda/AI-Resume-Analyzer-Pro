@@ -16,3 +16,5 @@ resume_report.pdf
 
 # Browser cache and temp files
 user_data/
+# Video recording files
+linkedin_demo_recording.*
