@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premium Animated Particle & Ambient Background</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Link Outfit and Inter Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- LAYER 1 & 2: Ambient Background and Nebula Blobs -->
+  <div class="ambient-bg">
+    <div class="nebula-blob nebula-1"></div>
+    <div class="nebula-blob nebula-2"></div>
+  </div>
+
+  <!-- LAYER 3: tsParticles Canvas Container -->
+  <div id="tsparticles"></div>
+
+  <!-- LAYER 4: Noise Grain Overlay -->
+  <div class="noise-overlay"></div>
+
+  <!-- LAYER 5: Main Website Content -->
+  <div class="content-wrapper">
+    <!-- Header Navigation -->
+    <header class="navbar">
+      <div class="nav-logo">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
+        <span>Cre8tera</span>
+      </div>
+      <div class="nav-menu">
+        <span class="menu-pill">Menu</span>
+      </div>
+      <div class="nav-actions">
+        <a href="#" class="nav-link">Login</a>
+        <a href="#" class="btn-demo">Try Demo</a>
+      </div>
+    </header>
+
+    <!-- Main Hero Body -->
+    <main class="hero">
+      <div class="hero-text-container">
+        <div class="hero-brand-title">Create</div>
+        <h1 class="hero-headline">Creating new worlds, an AI workflow at a time.</h1>
+      </div>
+    </main>
+
+    <!-- 2D Glowing Horizon Aura Dome (Reference Design) -->
+    <div class="energy-dome-container">
+      <div class="energy-dome"></div>
+      <div class="energy-line"></div>
+      <div class="glow-particle p1"></div>
+      <div class="glow-particle p2"></div>
+      <div class="glow-particle p3"></div>
+      <div class="glow-particle p4"></div>
+      <div class="glow-particle p5"></div>
+      
+      <!-- Measuring Scale/Gauge from reference image -->
+      <div class="scale-gauge">
+        <div class="scale-line"></div>
+        <div class="scale-ticks">
+          <span>0.0</span>
+          <span>0.2</span>
+          <span>0.4</span>
+          <span>0.6</span>
+          <span>0.8</span>
+          <span>1.0</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Load tsParticles Bundle CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tsparticles/2.12.0/tsparticles.bundle.min.js"></script>
+  <!-- Load custom script logic -->
+  <script src="script.js"></script>
+</body>
+</html>

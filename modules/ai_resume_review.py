@@ -1,37 +1,46 @@
-import os
+"""AI Resume Reviewer using shared LLM client.
 
-from dotenv import load_dotenv
-from langchain_groq import ChatGroq
+Returns a rich markdown-formatted review with structured sections.
+"""
 from langchain_core.messages import HumanMessage
+from modules.llm_client import llm
 
-load_dotenv()
 
-llm = ChatGroq(
-    model="llama-3.3-70b-versatile",
-    groq_api_key=os.getenv("GROQ_API_KEY"),
-    temperature=0.3
-)
-def review_resume(resume_text):
+def review_resume(resume_text: str) -> str:
+    """Analyze resume and return structured markdown review."""
+    prompt = f"""You are a Senior ATS Resume Expert and Career Coach with 15 years of experience
+ reviewing resumes for top tech companies.
 
-    prompt = f"""
-You are an expert ATS Resume Reviewer.
+Analyze the following resume and produce a **detailed, structured markdown report**.
 
-Analyze the following resume.
+Use EXACTLY this format with these section headers:
 
-Give your response in this format:
+## Executive Summary
+A 2-3 sentence overall assessment of the candidate.
 
-1. ATS Score (/100)
-2. Strengths
-3. Weaknesses
-4. Missing Skills
-5. Resume Improvement Tips
-6. Best Suitable Job Roles
+## Key Strengths
+- List 4-6 concrete strengths with specific evidence from the resume
+
+## Areas for Improvement
+- List 4-6 specific, actionable weaknesses
+
+## ATS Optimization Tips
+- List 4-5 specific tips to improve ATS compatibility (keywords, formatting, sections)
+
+## Career Path Recommendations
+- List 3-4 recommended job titles that match this profile
+
+## Action Items
+- List 3-5 immediate next steps the candidate should take
 
 Resume:
-
 {resume_text}
+
+Be specific, professional, and actionable. Use markdown formatting throughout.
+Do NOT add any preamble or conversational text. Start directly with ## Executive Summary.
 """
-
-    response = llm.invoke([HumanMessage(content=prompt)])
-
-    return response.content
+    try:
+        response = llm.invoke([HumanMessage(content=prompt)])
+        return response.content
+    except Exception as e:
+        return f"## AI Review Unavailable\n\nCould not connect to AI service: {e}\n\nPlease check your GROQ_API_KEY and try again."

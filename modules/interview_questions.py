@@ -1,39 +1,77 @@
-import os
-from dotenv import load_dotenv
-from langchain_groq import ChatGroq
+"""Interview question generator using shared LLM.
+
+Generates categorized questions (Easy / Medium / Hard / Technical /
+Behavioral / HR) tailored to the actual resume content.
+"""
 from langchain_core.messages import HumanMessage
+from modules.llm_client import llm
 
-load_dotenv()
 
-llm = ChatGroq(
-    model="llama-3.3-70b-versatile",
-    groq_api_key=os.getenv("GROQ_API_KEY"),
-    temperature=0.3
-)
+def generate_questions(resume_text: str) -> str:
+    """Generate categorized interview questions based on resume content."""
+    prompt = f"""You are a Senior Technical Interviewer and HR Expert.
 
-def generate_questions(resume_text):
-    prompt = f"""
-You are an Interview Expert.
+Based on the resume below, generate a comprehensive set of interview questions
+tailored specifically to THIS candidate's skills, experience, and background.
 
-Based on this resume generate:
+Use EXACTLY this format with these section headers:
 
-1. Python Questions
+## Easy Questions
+(5 foundational questions about their listed skills and experience)
+1. ...
+2. ...
+3. ...
+4. ...
+5. ...
 
-2. SQL Questions
+## Medium Questions
+(5 intermediate questions requiring applied knowledge)
+1. ...
+2. ...
+3. ...
+4. ...
+5. ...
 
-3. Data Analytics Questions
+## Hard Questions
+(5 advanced/expert-level questions)
+1. ...
+2. ...
+3. ...
+4. ...
+5. ...
 
-4. HR Questions
+## Technical Questions
+(5 hands-on coding / system design / problem-solving questions)
+1. ...
+2. ...
+3. ...
+4. ...
+5. ...
 
-Return 5 questions for each category.
+## Behavioral Questions
+(5 STAR-method behavioral questions relevant to their experience)
+1. ...
+2. ...
+3. ...
+4. ...
+5. ...
+
+## HR Questions
+(5 professional/situational HR questions)
+1. ...
+2. ...
+3. ...
+4. ...
+5. ...
 
 Resume:
-
 {resume_text}
+
+Make ALL questions specific to this candidate's actual skills and experience.
+Do NOT use generic questions. Start directly with ## Easy Questions.
 """
-
-    response = llm.invoke(
-        [HumanMessage(content=prompt)]
-    )
-
-    return response.content
+    try:
+        response = llm.invoke([HumanMessage(content=prompt)])
+        return response.content
+    except Exception as e:
+        return f"## Questions Unavailable\n\nCould not connect to AI service: {e}"

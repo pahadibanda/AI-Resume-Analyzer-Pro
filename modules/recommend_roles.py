@@ -1,20 +1,61 @@
-def recommend_roles(skills):
+"""Career role recommender based on detected skills.
 
-    roles = []
+Maps skill combinations to realistic job title recommendations.
+Returns a de-duplicated list (max 5).
+"""
 
-    if "Python" in skills and "SQL" in skills:
-        roles.append("Data Analyst")
+ROLE_RULES = [
+    # Data & Analytics
+    ({"Python", "SQL", "Pandas"}, "Data Analyst"),
+    ({"Python", "SQL", "Data Analysis"}, "Data Analyst"),
+    ({"Power BI", "Excel", "SQL"}, "Business Intelligence Analyst"),
+    ({"Tableau", "SQL", "Data Visualization"}, "BI Developer"),
+    ({"Python", "Statistics", "Machine Learning"}, "Data Scientist"),
+    ({"Machine Learning", "TensorFlow", "PyTorch"}, "Machine Learning Engineer"),
+    ({"Deep Learning", "Computer Vision", "PyTorch"}, "Computer Vision Engineer"),
+    ({"NLP", "Hugging Face", "LangChain"}, "NLP / LLM Engineer"),
+    ({"Spark", "Kafka", "Airflow"}, "Data Engineer"),
+    ({"ETL", "Data Warehousing", "SQL"}, "Data Engineer"),
+    ({"dbt", "SQL", "Python"}, "Analytics Engineer"),
 
-    if "Power BI" in skills and "Excel" in skills:
-        roles.append("Business Analyst")
+    # Software Engineering
+    ({"Python", "Django", "REST API"}, "Backend Developer"),
+    ({"Python", "FastAPI", "Docker"}, "Backend Engineer"),
+    ({"Java", "Spring Boot", "REST API"}, "Java Backend Developer"),
+    ({"Node.js", "Express.js", "MongoDB"}, "Full Stack Developer (Node)"),
+    ({"React", "TypeScript", "REST API"}, "Frontend Developer"),
+    ({"React", "Node.js", "MongoDB"}, "MERN Stack Developer"),
+    ({"Next.js", "React", "TypeScript"}, "Frontend / Full Stack Developer"),
+    ({"Flutter", "Dart"}, "Mobile Developer (Flutter)"),
+    ({"Android", "Kotlin"}, "Android Developer"),
+    ({"iOS", "Swift"}, "iOS Developer"),
 
-    if "Machine Learning" in skills:
-        roles.append("Machine Learning Engineer")
+    # DevOps & Cloud
+    ({"Docker", "Kubernetes", "CI/CD"}, "DevOps Engineer"),
+    ({"AWS", "Terraform", "Docker"}, "Cloud Engineer (AWS)"),
+    ({"Azure", "Docker", "Kubernetes"}, "Cloud Engineer (Azure)"),
+    ({"GCP", "Terraform", "Kubernetes"}, "Cloud Engineer (GCP)"),
+    ({"Linux", "Bash", "Ansible"}, "Site Reliability Engineer"),
 
-    if "Statistics" in skills and "Python" in skills:
-        roles.append("Data Scientist")
+    # General fallback
+    ({"Python"}, "Python Developer"),
+    ({"JavaScript"}, "JavaScript Developer"),
+    ({"SQL"}, "Database Administrator"),
+]
 
-    if len(roles) == 0:
-        roles.append("Software Engineer")
+
+def recommend_roles(skills: list) -> list[str]:
+    """Return up to 5 recommended job roles based on detected skills."""
+    skill_set = set(skills)
+    roles: list[str] = []
+
+    for required, role in ROLE_RULES:
+        if required.issubset(skill_set) and role not in roles:
+            roles.append(role)
+        if len(roles) >= 5:
+            break
+
+    if not roles:
+        roles.append("Software Engineer / Generalist")
 
     return roles

@@ -1,16 +1,11 @@
-import pdfplumber
+"""Job Description PDF text extractor.
 
-def extract_job_description(pdf_path):
+Reuses the shared `_extract_pdf_text` utility from resume_parser to avoid
+code duplication. Both resume and JD parsing use identical pdfplumber logic.
+"""
+from modules.resume_parser import _extract_pdf_text
 
-    text = ""
 
-    with pdfplumber.open(pdf_path) as pdf:
-
-        for page in pdf.pages:
-
-            page_text = page.extract_text()
-
-            if page_text:
-                text += page_text + "\n"
-
-    return text
+def extract_job_description(pdf_path: str) -> str:
+    """Extract text from a Job Description PDF file."""
+    return _extract_pdf_text(pdf_path)
